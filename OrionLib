@@ -206,7 +206,7 @@ local function LoadCfg(Config)
 				end
 			end)
 		else
-			warn("Lynx Hub Config Loader - Could not find ", a ,b)
+			warn("Config Loader - Could not find ", a ,b)
 		end
 	end)
 end
@@ -364,7 +364,7 @@ local NotificationHolder = SetProps(SetChildren(MakeElement("TFrame"), {
 function OrionLib:MakeNotification(NotificationConfig)
 	spawn(function()
 		NotificationConfig.Name = NotificationConfig.Name or "Lynx Hub"
-		NotificationConfig.Content = NotificationConfig.Content or "Benachrichtigung"
+		NotificationConfig.Content = NotificationConfig.Content or ""
 		NotificationConfig.Image = ""
 		NotificationConfig.Time = NotificationConfig.Time or 15
 
@@ -422,8 +422,8 @@ function OrionLib:Init()
 			if isfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt") then
 				LoadCfg(readfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt"))
 				OrionLib:MakeNotification({
-					Name = "Lynx Hub Beta",
-					Content = "Konfiguration fuer Spiel " .. game.GameId .. " automatisch geladen.",
+					Name = "Lynx Hub",
+					Content = "Config geladen (" .. game.GameId .. ").",
 					Time = 5
 				})
 			end
@@ -437,14 +437,14 @@ function OrionLib:MakeWindow(WindowConfig)
 	local UIHidden = false
 
 	WindowConfig = WindowConfig or {}
-	WindowConfig.Name = WindowConfig.Name or "Lynx Hub von MoonTech"
+	WindowConfig.Name = WindowConfig.Name or "Lynx Hub"
 	WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
 	WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
 	WindowConfig.HidePremium = WindowConfig.HidePremium or false
 	if WindowConfig.IntroEnabled == nil then
 		WindowConfig.IntroEnabled = true
 	end
-	WindowConfig.IntroText = WindowConfig.IntroText or "Lynx Hub von MoonTech\nLynx Hub Beta"
+	WindowConfig.IntroText = WindowConfig.IntroText or "loading Lynx Hub Vending Rob"
 	WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
 	WindowConfig.ShowIcon = false
 	WindowConfig.Icon = ""
@@ -537,7 +537,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				ClipsDescendants = true
 			}), "Text"),
 
-			AddThemeObject(SetProps(MakeElement("Label", "von MoonTech - Beta", 13), {
+			AddThemeObject(SetProps(MakeElement("Label", "Beta", 13), {
 				Size = UDim2.new(1, -20, 0, 14),
 				Position = UDim2.new(0, 12, 0, 26),
 				Font = Enum.Font.Gotham,
@@ -596,8 +596,8 @@ function OrionLib:MakeWindow(WindowConfig)
 		MainWindow.Visible = false
 		UIHidden = true
 		OrionLib:MakeNotification({
-			Name = "Lynx Hub Beta",
-			Content = "Druecke RightShift, um das Fenster wieder zu oeffnen.",
+			Name = "Lynx Hub",
+			Content = "RightShift druecken zum Oeffnen.",
 			Time = 5
 		})
 		WindowConfig.CloseCallback()
@@ -1612,17 +1612,17 @@ function OrionLib:MakeWindow(WindowConfig)
 				Size = UDim2.new(1, 0, 1, 0),
 				Parent = Container
 			}), {
-				AddThemeObject(SetProps(MakeElement("Label", "Nicht autorisiert", 14), {
+				AddThemeObject(SetProps(MakeElement("Label", "Gesperrt", 14), {
 					Size = UDim2.new(1, -38, 0, 14),
 					Position = UDim2.new(0, 18, 0, 18),
 					TextTransparency = 0.4
 				}), "Text"),
-				AddThemeObject(SetProps(MakeElement("Label", "Lynx Hub Beta", 14), {
+				AddThemeObject(SetProps(MakeElement("Label", "Lynx Hub", 14), {
 					Size = UDim2.new(1, -150, 0, 14),
 					Position = UDim2.new(0, 18, 0, 112),
 					Font = Enum.Font.GothamBold
 				}), "Text"),
-				AddThemeObject(SetProps(MakeElement("Label", "Dieser Bereich ist in Lynx Hub von MoonTech gesperrt.", 12), {
+				AddThemeObject(SetProps(MakeElement("Label", "Dieser Bereich ist gesperrt.", 12), {
 					Size = UDim2.new(1, -40, 0, 28),
 					Position = UDim2.new(0, 18, 0, 138),
 					TextWrapped = true,
@@ -1634,8 +1634,8 @@ function OrionLib:MakeWindow(WindowConfig)
 	end
 
 	OrionLib:MakeNotification({
-		Name = "Lynx Hub von MoonTech",
-		Content = "Lynx Hub Beta wurde geladen.",
+		Name = "Lynx Hub",
+		Content = "Geladen.",
 		Time = 5
 	})
 
